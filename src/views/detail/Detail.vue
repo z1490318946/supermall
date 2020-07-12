@@ -30,6 +30,8 @@ import DetailCommentInfo from "./components/DetailCommentInfo";
 import DetailRecommendInfo from "./components/DetailRecommendInfo";
 import DetailBottomBar from "./components/DetailBottomBar";
 
+import { mapActions } from 'vuex';
+
 import {
   getDetail,
   getRecommend,
@@ -127,6 +129,7 @@ export default {
     this.$bus.$off("itemImgLoad", this.itemImgListener);
   },
   methods: {
+    ...mapActions(['addCart']),
     imageLoad() {
       this.$refs.scroll.refresh();
       this.getThemeTopY();
@@ -160,11 +163,16 @@ export default {
       product.image = this.topImages[0]
       product.title = this.goods.title
       product.desc = this.goods.desc
-      product.price = this.goods.newPrice
+      product.newPrice = this.goods.nowPrice
       product.iid = this.iid
 
       // 2.将商品添加到购物车
-      this.$store.commit('addCart', product)
+      this.addCart(product).then(res => {
+        this.$toast.show(res, 1500)
+      })
+      // this.$store.dispatch('addCart', product).then(res => {
+      //   console.log(res)
+      // })
     }
   }
 };

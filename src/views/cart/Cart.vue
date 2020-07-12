@@ -3,27 +3,31 @@
     <nav-bar class="nav-bar">
       <div slot="center">购物车({{cartCount}})</div>
     </nav-bar>
-    <cart-list class="cart-list" ></cart-list>
-    <!-- <bottom-bar></bottom-bar> -->
+
+    <!-- 商品的列表 -->
+    <cart-list class="cart-list"></cart-list>
+
+    <!-- 底部汇总 -->
+    <cart-bottom-bar></cart-bottom-bar>
   </div>
 </template>
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 import CartList from "./components/CartList";
-// import BottomBar from "./childComps/BottomBar";
+import CartBottomBar from "./components/CartBottomBar";
 
 export default {
   name: "Cart",
   components: {
     NavBar,
     CartList,
-    // BottomBar
+    CartBottomBar
   },
   computed: {
     ...mapGetters({
-        cartCount: 'cartLength'
+      cartCount: "cartLength"
     })
   }
 };
@@ -31,7 +35,7 @@ export default {
 
 <style scoped>
 #cart {
-  /* position: relative; */
+  /*position: relative;*/
   height: 100vh;
 }
 

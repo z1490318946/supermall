@@ -80,7 +80,6 @@ export default {
     }
   },
   created() {
-    console.log("home created");
     //1.请求多个数据
     this.getHomeMultidata();
     //2.请求商品数据
@@ -178,7 +177,6 @@ export default {
 
 .content {
   overflow: hidden;
-
   position: absolute;
   top: 44px;
   bottom: 49px;
